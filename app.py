@@ -3,6 +3,7 @@ import re
 import os 
 import glob 
 import json 
+import sys
 
 
 def get_column_names(schemas, ds_name, sorting_key="column_position"):
@@ -47,4 +48,8 @@ def process_files(ds_names=None):
 
 
 if __name__ == "__main__":
-    process_files()
+    if len(sys.argv) == 2:
+        ds_names = json.loads(sys.argv[1])
+        process_files(ds_names)
+    else:
+        process_files()
